@@ -1,5 +1,5 @@
 import express from "express";
-import todos from "./routes/todos";
+import todos from "./routes/todos.js";
 
 const app = express();
 const port = 3333;

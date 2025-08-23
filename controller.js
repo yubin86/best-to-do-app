@@ -28,10 +28,15 @@ export async function updateTodo(req, res) {
     const newData = req.body;
     const updateTodo = await db
         .update(todosTable)
-        .set({title: newData.title, content: newData, content})
+        .set({title: newData.title, description: newData.description })
         .where(eq(todosTable.todoId, todoId));
     res.send("update todo!");
 }
 export async function getTodo(req, res) {
-    res.send("get ONE todo!");
+    const todoId = req.params.todoId;
+    const todo = await db
+        .select()
+        .from(todosTable)
+        .where(eq(todosTable.todoId, todoId));
+    res.send(todo);
 }

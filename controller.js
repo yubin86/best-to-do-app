@@ -7,10 +7,11 @@ export async function createTodo(req, res) {
     console.log(newUser);
     try{
         const user = await db.insert(todosTable).values(newUser);
+        res.send({status:"success"});
     } catch (err) {
         console.log(err);
+        res.send({status:"failure"});
     }
-    res.send("create todo!");
 }
 export async function getTodos(req, res) {
     const todos = await db.select().from(todosTable);
